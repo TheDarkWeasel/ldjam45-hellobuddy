@@ -4,7 +4,7 @@ using UnityEngine;
 public class Docker : MonoBehaviour
 {
     public Rigidbody rb;
-    public float forceMagnitude = 100;
+    public float distanceToDock = 1.6f;
 
     private List<FixedJoint> joints = new List<FixedJoint>();
 
@@ -24,7 +24,7 @@ public class Docker : MonoBehaviour
 
         Debug.Log("Distance: " + distance);
 
-        if (distance <= 1.6 && !dockable.IsDocked())
+        if (distance <= distanceToDock && !dockable.IsDocked())
         {
             dockable.SetDocked(true);
             FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();
