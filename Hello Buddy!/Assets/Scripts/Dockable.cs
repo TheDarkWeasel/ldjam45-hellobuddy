@@ -39,6 +39,16 @@ public class Dockable : MonoBehaviour
         {
             OnUndocked();
         }
+        else
+        {
+            OnDocked();
+        }
+    }
+
+    private void OnDocked()
+    {
+        //object will become a docker itself
+        gameObject.AddComponent<Docker>().rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void OnUndocked()

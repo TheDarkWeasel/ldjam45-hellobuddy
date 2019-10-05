@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Docker>();    
+        player = GameObject.Find("Player").GetComponent<Docker>();  
     }
 
     void OnCollisionEnter(Collision collision)
