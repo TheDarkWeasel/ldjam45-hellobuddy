@@ -5,6 +5,7 @@ public class Docker : MonoBehaviour
 {
     public Rigidbody rb;
     private EvolutionManager evolutionManager;
+    private PlayerSounds playerSounds;
 
     public float distanceToDock = 1.6f;
 
@@ -16,6 +17,7 @@ public class Docker : MonoBehaviour
     {
         isPlayer = name == "Player";
         evolutionManager = FindObjectOfType<EvolutionManager>();
+        playerSounds = FindObjectOfType<PlayerSounds>();
         if (evolutionManager == null)
         {
             throw new UnityException("No evolution manager found!");
@@ -51,11 +53,18 @@ public class Docker : MonoBehaviour
 
             fixedJoint.connectedBody = otherRigidbody;
             evolutionManager.OnAddedAtom();
+
+            playerSounds.OnDock();
         }
     }
 
     public void OnHitEnemy()
     {
+        if (isPlayer)
+        {
+            playerSounds.OnHit();
+        }
+
         if (isPlayer && dockedObjects.Count == 0)
         {
             Destroy(gameObject);
