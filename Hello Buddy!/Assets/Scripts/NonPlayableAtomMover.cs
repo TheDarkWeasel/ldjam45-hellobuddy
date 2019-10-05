@@ -10,5 +10,11 @@ public class NonPlayableAtomMover : MonoBehaviour
 
         Vector3 movement = new Vector3(0, 0, -movementPerSecond * deltaTime);
         gameObject.transform.Translate(movement);
+
+        //Destroy unneeded object
+        if(gameObject.transform.position.z < -19)
+        {
+            Destroy(gameObject);
+        }
     }
 }

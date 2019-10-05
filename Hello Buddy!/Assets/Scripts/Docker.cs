@@ -10,8 +10,11 @@ public class Docker : MonoBehaviour
 
     private List<DockedObject> dockedObjects = new List<DockedObject>();
 
+    private bool isPlayer = false;
+
     void Start()
     {
+        isPlayer = name == "Player";
         evolutionManager = FindObjectOfType<EvolutionManager>();
         if (evolutionManager == null)
         {
@@ -53,7 +56,7 @@ public class Docker : MonoBehaviour
 
     public void OnHitEnemy()
     {
-        if (dockedObjects.Count == 0)
+        if (isPlayer && dockedObjects.Count == 0)
         {
             Destroy(gameObject);
             //TODO game over

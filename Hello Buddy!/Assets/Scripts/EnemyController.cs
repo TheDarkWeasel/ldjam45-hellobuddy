@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private Docker player;
+    private Docker[] dockers;
 
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Docker>();  
+        dockers = FindObjectsOfType<Docker>();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponentInChildren<EnemyController>() == null)
+        if (collision.gameObject.GetComponentInChildren<EnemyController>() == null)
         {
             Destroy(gameObject);
-            player.OnHitEnemy();
+            foreach (Docker docker in dockers)
+            {
+                docker.OnHitEnemy();
+            }
         }
     }
 }
