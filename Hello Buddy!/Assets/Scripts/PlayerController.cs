@@ -3,6 +3,7 @@
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1;
+    public float rotationSpeed = 1;
     private Rigidbody rb;
 
     void Start()
@@ -13,8 +14,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float rotationLeft = (Input.GetKey("q") ? -1f : 0f) * speed;
-        float rotationRight = (Input.GetKey("e") ? 1f : 0f) * speed;
+        float rotationLeft = (Input.GetKey("q") ? -1f : 0f) * rotationSpeed;
+        float rotationRight = (Input.GetKey("e") ? 1f : 0f) * rotationSpeed;
 
         Vector3 rotationVector = new Vector3(0, rotationLeft + rotationRight, 0);
 

@@ -218,7 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791a427725713d349b482ea11023391b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 40
+  rotationSpeed: 10
 --- !u!114 &4226045977528168971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8174239022074070649}
+  distanceToDock: 1.6
 --- !u!1 &7098830696550209748
 GameObject:
   m_ObjectHideFlags: 0
