@@ -8,7 +8,7 @@ public class Docker : MonoBehaviour
 
     public float distanceToDock = 1.6f;
 
-    private List<FixedJoint> joints = new List<FixedJoint>();
+    private List<DockedObject> dockedObjects = new List<DockedObject>();
 
     void Start()
     {
@@ -33,16 +33,37 @@ public class Docker : MonoBehaviour
         Vector3 direction = rb.position - otherRigidbody.position;
         float distance = direction.magnitude;
 
-        Debug.Log("Distance: " + distance);
+        //Debug.Log("Distance: " + distance);
 
         if (distance <= distanceToDock && !dockable.IsDocked())
         {
             dockable.SetDocked(true);
             FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();
-            joints.Add(fixedJoint);
+
+            DockedObject docked = new DockedObject();
+            docked.dockable = dockable;
+            docked.joint = fixedJoint;
+
+            dockedObjects.Add(docked);
 
             fixedJoint.connectedBody = otherRigidbody;
             evolutionManager.OnAddedAtom();
         }
+    }
+
+    public void OnHitEnemy()
+    {
+        foreach(DockedObject docked in dockedObjects)
+        {
+            docked.joint.connectedBody = null;
+            Destroy(docked.joint);
+            docked.dockable.SetDocked(false);
+        }
+
+        dockedObjects.Clear();
+
+        evolutionManager.ClearAtoms();
+
+        Debug.Log("Hit enemy");
     }
 }

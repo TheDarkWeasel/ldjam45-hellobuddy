@@ -35,5 +35,17 @@ public class Dockable : MonoBehaviour
     public void SetDocked(bool docked)
     {
         isDocked = docked;
+        if (!docked)
+        {
+            OnUndocked();
+        }
+    }
+
+    private void OnUndocked()
+    {
+        Debug.Log("Undocked!");
+        Destroy(gameObject);
+
+        //TODO do this with a nice animation
     }
 }
