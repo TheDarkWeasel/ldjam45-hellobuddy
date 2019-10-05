@@ -4,9 +4,20 @@ using UnityEngine;
 public class Docker : MonoBehaviour
 {
     public Rigidbody rb;
+    private EvolutionManager evolutionManager;
+
     public float distanceToDock = 1.6f;
 
     private List<FixedJoint> joints = new List<FixedJoint>();
+
+    void Start()
+    {
+        evolutionManager = FindObjectOfType<EvolutionManager>();
+        if(evolutionManager == null)
+        {
+            throw new UnityException("No evolution manager found!");
+        }
+    }
 
     void FixedUpdate()
     {
@@ -31,6 +42,7 @@ public class Docker : MonoBehaviour
             joints.Add(fixedJoint);
 
             fixedJoint.connectedBody = otherRigidbody;
+            evolutionManager.OnAddedAtom();
         }
     }
 }
