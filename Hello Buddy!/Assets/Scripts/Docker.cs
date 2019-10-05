@@ -6,6 +6,7 @@ public class Docker : MonoBehaviour
     public Rigidbody rb;
     private EvolutionManager evolutionManager;
     private PlayerSounds playerSounds;
+    private GameOverManager gameOverManager;
 
     public float distanceToDock = 1.6f;
 
@@ -18,6 +19,7 @@ public class Docker : MonoBehaviour
         isPlayer = name == "Player";
         evolutionManager = FindObjectOfType<EvolutionManager>();
         playerSounds = FindObjectOfType<PlayerSounds>();
+        gameOverManager = FindObjectOfType<GameOverManager>();
         if (evolutionManager == null)
         {
             throw new UnityException("No evolution manager found!");
@@ -68,7 +70,7 @@ public class Docker : MonoBehaviour
         if (isPlayer && dockedObjects.Count == 0)
         {
             Destroy(gameObject);
-            //TODO game over
+            gameOverManager.OnGameOver();
         }
         else
         {
