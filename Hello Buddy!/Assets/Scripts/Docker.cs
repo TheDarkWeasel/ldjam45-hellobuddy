@@ -13,7 +13,7 @@ public class Docker : MonoBehaviour
     void Start()
     {
         evolutionManager = FindObjectOfType<EvolutionManager>();
-        if(evolutionManager == null)
+        if (evolutionManager == null)
         {
             throw new UnityException("No evolution manager found!");
         }
@@ -53,16 +53,24 @@ public class Docker : MonoBehaviour
 
     public void OnHitEnemy()
     {
-        foreach(DockedObject docked in dockedObjects)
+        if (dockedObjects.Count == 0)
         {
-            docked.joint.connectedBody = null;
-            Destroy(docked.joint);
-            docked.dockable.SetDocked(false);
+            Destroy(gameObject);
+            //TODO game over
         }
+        else
+        {
+            foreach (DockedObject docked in dockedObjects)
+            {
+                docked.joint.connectedBody = null;
+                Destroy(docked.joint);
+                docked.dockable.SetDocked(false);
+            }
 
-        dockedObjects.Clear();
+            dockedObjects.Clear();
 
-        evolutionManager.ClearAtoms();
+            evolutionManager.ClearAtoms();
+        }
 
         Debug.Log("Hit enemy");
     }
