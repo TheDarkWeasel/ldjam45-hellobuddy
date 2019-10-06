@@ -15,11 +15,11 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.GetComponentInChildren<EnemyController>() == null)
         {
-            Destroy(gameObject);
             foreach (Docker docker in dockers)
             {
                 docker.OnHitEnemy();
             }
+            Destroy(transform.parent.gameObject);
         }
     }
 }

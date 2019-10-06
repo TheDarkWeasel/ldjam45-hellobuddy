@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 8174239022074070649}
   - component: {fileID: 2239595070397229277}
   - component: {fileID: 4226045977528168971}
+  - component: {fileID: 4016790273155988462}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -233,7 +234,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8174239022074070649}
-  distanceToDock: 1.6
+--- !u!122 &4016790273155988462
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098830695514953373}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_Size: 1
 --- !u!1 &7098830696550209748
 GameObject:
   m_ObjectHideFlags: 0

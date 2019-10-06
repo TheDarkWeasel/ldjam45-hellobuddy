@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 48968317768110151}
   - component: {fileID: 1967919020879460196}
   - component: {fileID: 5504012164002644248}
+  - component: {fileID: 6641334026421544782}
   m_Layer: 0
   m_Name: FriendlyAtom
   m_TagString: Untagged
@@ -391,3 +392,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!122 &6641334026421544782
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48968317768110148}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278386432
+  m_Size: 1

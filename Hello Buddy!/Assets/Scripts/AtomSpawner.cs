@@ -27,7 +27,7 @@ public class AtomSpawner : MonoBehaviour
             string atomPrefabPath = registeredAtomPrefabs[Random.Range(0, registeredAtomPrefabs.Count)];
             GameObject instantiatedObject = Instantiate(Resources.Load<GameObject>(atomPrefabPath));
 
-            Vector3 spawn = new Vector3(Random.Range(-10.4f, 10.3f), 0, 15.63f);
+            Vector3 spawn = new Vector3(Random.Range(-10.4f, 10.3f), 0, 17.63f);
             instantiatedObject.transform.position = spawn;
 
             //Downward movement
