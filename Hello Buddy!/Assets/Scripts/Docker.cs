@@ -42,7 +42,7 @@ public class Docker : MonoBehaviour
 
         //Debug.Log("playerWidth: " + playerWidth);
 
-        if (distance <= playerWidth && !dockable.IsDocked())
+        if (distance <= playerWidth + 0.05f && !dockable.IsDocked())
         {
             dockable.SetDocked(true);
             FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();

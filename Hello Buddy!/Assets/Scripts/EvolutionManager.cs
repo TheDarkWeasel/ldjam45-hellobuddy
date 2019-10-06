@@ -5,6 +5,7 @@ public class EvolutionManager : MonoBehaviour
 {
     public Text atomsUIText;
     public Text scoreUIText;
+    public Text atomsRemainingText;
 
     public int scorePerAtom = 1;
     public int scorePerEvolution = 100;
@@ -13,11 +14,14 @@ public class EvolutionManager : MonoBehaviour
     private int atomCounter = 0;
     private int score = 0;
 
+    private Animator evolutionUIAnimator;
     private GameObject player;
 
     void Start()
     {
         player = GameObject.Find("Player");
+        evolutionUIAnimator = atomsRemainingText.GetComponentInParent<Animator>();
+        UpdateAtomsAndScore();
     }
 
     void Update()
@@ -38,22 +42,51 @@ public class EvolutionManager : MonoBehaviour
         ClearAtoms();
     }
 
+    private void OnEvolutionReady()
+    {
+        evolutionUIAnimator.ResetTrigger("EvoReady");
+        evolutionUIAnimator.ResetTrigger("EvoDone");
+        evolutionUIAnimator.SetTrigger("EvoReady");
+    }
+
+    private void OnEvolutionDone()
+    {
+        evolutionUIAnimator.ResetTrigger("EvoReady");
+        evolutionUIAnimator.ResetTrigger("EvoDone");
+        evolutionUIAnimator.SetTrigger("EvoDone");
+    }
+
     public void OnAddedAtom()
     {
         atomCounter++;
         score += scorePerAtom;
         UpdateAtomsAndScore();
+
+        if (atomCounter >= evolutionPossibleWithAtomCount)
+        {
+            OnEvolutionReady();
+        }
     }
 
     public void ClearAtoms()
     {
         atomCounter = 0;
         UpdateAtomsAndScore();
+        OnEvolutionDone();
     }
 
     private void UpdateAtomsAndScore()
     {
         atomsUIText.text = "" + atomCounter;
         scoreUIText.text = "" + score;
+        int atomsRemainingForEvo = evolutionPossibleWithAtomCount - atomCounter;
+        if (atomsRemainingForEvo > 0)
+        {
+            atomsRemainingText.text = "" + (evolutionPossibleWithAtomCount - atomCounter);
+        }
+        else
+        {
+            atomsRemainingText.text = "Press 'F' to evolve";
+        }
     }
 }
