@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 1967919020879460196}
   - component: {fileID: 5504012164002644248}
   - component: {fileID: 6641334026421544782}
+  - component: {fileID: 425070651735269106}
   m_Layer: 0
   m_Name: FriendlyAtom
   m_TagString: Untagged
@@ -404,3 +405,22 @@ Halo:
     serializedVersion: 2
     rgba: 4278386432
   m_Size: 1
+--- !u!95 &425070651735269106
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48968317768110148}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdaa03f6ff695a5448fe99822b3c5502, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

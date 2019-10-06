@@ -28,7 +28,8 @@ public class Docker : MonoBehaviour
     {
         foreach (Dockable dockable in Dockable.dockables)
         {
-            TryDocking(dockable);
+            if (!dockable.IsDestroyed())
+                TryDocking(dockable);
         }
     }
 
@@ -38,7 +39,11 @@ public class Docker : MonoBehaviour
         Vector3 direction = rb.position - otherRigidbody.position;
         float distance = direction.magnitude;
 
-        float playerWidth = gameObject.GetComponentInChildren<Collider>().bounds.size.x;
+        Collider collider = gameObject.GetComponentInChildren<Collider>();
+        if (collider == null)
+            return;
+
+        float playerWidth = collider.bounds.size.x;
 
         //Debug.Log("playerWidth: " + playerWidth);
 

@@ -5,26 +5,26 @@ public class Dockable : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public static List<Dockable> dockables;
+    public static List<Dockable> dockables = new List<Dockable>();
+
+    private Animator destroyAnimator;
 
     private bool isDocked = false;
+    private bool isDestroyed = false;
+
+    void Start()
+    {
+        destroyAnimator = GetComponent<Animator>();
+    }
 
     void OnEnable()
     {
-        if (dockables == null)
-        {
-            dockables = new List<Dockable>();
-        }
-
         dockables.Add(this);
     }
 
     void OnDisable()
     {
-        if (dockables != null)
-        {
-            dockables.Remove(this);
-        }
+        dockables.Remove(this);
     }
 
     public bool IsDocked()
@@ -32,8 +32,16 @@ public class Dockable : MonoBehaviour
         return isDocked;
     }
 
+    public bool IsDestroyed()
+    {
+        return isDestroyed;
+    }
+
     public void SetDocked(bool docked)
     {
+        if (isDestroyed)
+            return;
+
         isDocked = docked;
         if (!docked)
         {
@@ -55,12 +63,25 @@ public class Dockable : MonoBehaviour
 
     private void OnUndocked()
     {
+        isDestroyed = true;
         Debug.Log("Undocked!");
         if (gameObject.GetComponent<Docker>() != null)
         {
             gameObject.GetComponent<Docker>().OnHitEnemy();
         }
-        Destroy(gameObject);
-        //TODO do this with a nice animation
+        destroyAnimator.ResetTrigger("Destroy");
+        destroyAnimator.SetTrigger("Destroy");
+        //Destroy collider, so we don't lose when this object hits an enemy
+        DestroyChildColliders();
+        Destroy(gameObject, 1);
+    }
+
+    private void DestroyChildColliders()
+    {
+        Collider[] childColliders = gameObject.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in childColliders)
+        {
+            Destroy(collider);
+        }
     }
 }
