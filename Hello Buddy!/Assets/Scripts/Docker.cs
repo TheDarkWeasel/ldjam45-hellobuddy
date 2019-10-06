@@ -8,8 +8,6 @@ public class Docker : MonoBehaviour
     private PlayerSounds playerSounds;
     private GameOverManager gameOverManager;
 
-    public float distanceToDock = 1.6f;
-
     private List<DockedObject> dockedObjects = new List<DockedObject>();
 
     private bool isPlayer = false;
@@ -40,9 +38,11 @@ public class Docker : MonoBehaviour
         Vector3 direction = rb.position - otherRigidbody.position;
         float distance = direction.magnitude;
 
-        //Debug.Log("Distance: " + distance);
+        float playerWidth = gameObject.GetComponentInChildren<Collider>().bounds.size.x;
 
-        if (distance <= distanceToDock && !dockable.IsDocked())
+        //Debug.Log("playerWidth: " + playerWidth);
+
+        if (distance <= playerWidth && !dockable.IsDocked())
         {
             dockable.SetDocked(true);
             FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();

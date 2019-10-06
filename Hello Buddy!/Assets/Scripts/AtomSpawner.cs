@@ -22,7 +22,7 @@ public class AtomSpawner : MonoBehaviour
 
         if (accumulatedDelta > millisTillSpawn)
         {
-            Debug.Log("Delta:" + accumulatedDelta);
+            //Debug.Log("Delta:" + accumulatedDelta);
             accumulatedDelta = 0;
             string atomPrefabPath = registeredAtomPrefabs[Random.Range(0, registeredAtomPrefabs.Count)];
             GameObject instantiatedObject = Instantiate(Resources.Load<GameObject>(atomPrefabPath));

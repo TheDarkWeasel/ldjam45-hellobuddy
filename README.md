@@ -1,5 +1,5 @@
 # Hello Buddy!
-Hello Buddy! is a game created for [Ludum Dare 45](https://ldjam.com). Everything here (including music and assets) was created by me in 48 hours.
+Hello Buddy! is a game created for the "Compo" of [Ludum Dare 45](https://ldjam.com). The theme this time was "Start with nothing". Everything here (including music, sounds and assets) was created by me in 48 hours.
 
 # Story
 After the big bang, Alvin the atom feels alone and seeks company. Help him to find friends an evolve.
