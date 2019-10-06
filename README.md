@@ -2,7 +2,7 @@
 Hello Buddy! is a game created for the "Compo" of [Ludum Dare 45](https://ldjam.com). The theme this time was "Start with nothing". Everything here (including music, sounds and assets) was created by me in 48 hours.
 
 # Story
-After the big bang, Alvin the atom feels alone and seeks company. Help him to find friends an evolve.
+After the big bang, Alvin the atom feels alone and seeks company. Help him to find friends and evolve.
   - Collect friendly (green) atoms
   - Avoid hostile (red) atoms
   - Grow big and evolve, when you have collected enough atoms!

@@ -3,11 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class StartscreenManager : MonoBehaviour
 {
+    public Canvas explanationCanvas;
+    public Canvas startscreenCanvas;
+
+    private bool inExplanation = false;
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (!inExplanation)
+            {
+                inExplanation = true;
+                startscreenCanvas.gameObject.SetActive(false);
+                explanationCanvas.gameObject.SetActive(true);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 }
