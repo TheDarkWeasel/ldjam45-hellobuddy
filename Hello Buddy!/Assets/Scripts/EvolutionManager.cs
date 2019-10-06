@@ -9,6 +9,7 @@ public class EvolutionManager : MonoBehaviour
     public Text scoreUIText;
     public Text atomsRemainingText;
     public Text highscoreText;
+    public Text evolutionsDoneText;
 
     public int scorePerAtom = 1;
     public int scorePerEvolution = 100;
@@ -17,6 +18,7 @@ public class EvolutionManager : MonoBehaviour
     private int atomCounter = 0;
     private int score = 0;
     private int highscore = 0;
+    private int evolutionsDone = 0;
 
     private Animator evolutionUIAnimator;
     private GameObject player;
@@ -41,9 +43,11 @@ public class EvolutionManager : MonoBehaviour
     {
         //Get a bonus, when you have more atoms than needed
         score += scorePerEvolution * (atomCounter - evolutionPossibleWithAtomCount + 1);
+        evolutionsDone++;
         //Lose all atoms
         player.GetComponent<Docker>().OnHitEnemy();
-        player.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+        float sizeChange = 0.2f;
+        player.transform.localScale += new Vector3(sizeChange, sizeChange, sizeChange);
         ClearAtoms();
     }
 
@@ -84,6 +88,7 @@ public class EvolutionManager : MonoBehaviour
     {
         atomsUIText.text = "" + atomCounter;
         scoreUIText.text = "" + score;
+        evolutionsDoneText.text = "" + evolutionsDone;
         int atomsRemainingForEvo = evolutionPossibleWithAtomCount - atomCounter;
         if (atomsRemainingForEvo > 0)
         {
