@@ -3,9 +3,12 @@ using UnityEngine.UI;
 
 public class EvolutionManager : MonoBehaviour
 {
+    private string HIGHSCOREKEY = "HIGHSCOREKEY";
+
     public Text atomsUIText;
     public Text scoreUIText;
     public Text atomsRemainingText;
+    public Text highscoreText;
 
     public int scorePerAtom = 1;
     public int scorePerEvolution = 100;
@@ -13,12 +16,14 @@ public class EvolutionManager : MonoBehaviour
 
     private int atomCounter = 0;
     private int score = 0;
+    private int highscore = 0;
 
     private Animator evolutionUIAnimator;
     private GameObject player;
 
     void Start()
     {
+        highscore = PlayerPrefs.GetInt(HIGHSCOREKEY, 0);
         player = GameObject.Find("Player");
         evolutionUIAnimator = atomsRemainingText.GetComponentInParent<Animator>();
         UpdateAtomsAndScore();
@@ -88,5 +93,18 @@ public class EvolutionManager : MonoBehaviour
         {
             atomsRemainingText.text = "Press 'F' to evolve";
         }
+
+        UpdateHighscore();
+    }
+
+    private void UpdateHighscore()
+    {
+        if (score > highscore)
+        {
+            highscore = score;
+            PlayerPrefs.SetInt(HIGHSCOREKEY, highscore);
+        }
+
+        highscoreText.text = "" + highscore;
     }
 }
