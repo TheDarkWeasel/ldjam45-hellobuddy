@@ -8,7 +8,7 @@ After the big bang, Alvin the atom feels alone and seeks company. Help him to fi
   - Grow big and evolve, when you have collected enough atoms!
   
 # Downloads
-  - Download builds at [itch.io](https://d4rkweasel.itch.io)
+  - Download builds at [itch.io](https://d4rkweasel.itch.io/hello-buddy)
 
   
 # License
