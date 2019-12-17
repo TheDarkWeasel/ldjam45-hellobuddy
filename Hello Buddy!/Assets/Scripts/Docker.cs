@@ -39,16 +39,21 @@ public class Docker : MonoBehaviour
         Vector3 direction = rb.position - otherRigidbody.position;
         float distance = direction.magnitude;
 
-        Collider collider = gameObject.GetComponentInChildren<Collider>();
-        if (collider == null)
+        Collider playerCollider = gameObject.GetComponentInChildren<Collider>();
+        if (playerCollider == null)
             return;
 
-        float playerWidth = collider.bounds.size.x;
+        Collider otherCollider = otherRigidbody.GetComponentInChildren<Collider>();
+        if (otherCollider == null)
+            return;
+
+        float playerRadius = playerCollider.bounds.size.x / 2;
+        float otherRadius = otherCollider.bounds.size.x / 2;
 
         //Sometimes the joints won't dock. This is preventing it.
         float safetyMargin = 0.05f;
 
-        if (distance <= playerWidth + safetyMargin && !dockable.IsDocked())
+        if (distance <= playerRadius + otherRadius + safetyMargin && !dockable.IsDocked())
         {
             dockable.SetDocked(true);
             FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();

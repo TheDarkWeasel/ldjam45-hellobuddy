@@ -47,7 +47,7 @@ public class EvolutionManager : MonoBehaviour
         //Lose all atoms
         player.GetComponent<Docker>().OnHitEnemy();
         float sizeChange = 0.2f;
-        player.transform.localScale += new Vector3(sizeChange, sizeChange, sizeChange);
+        player.transform.localScale += new Vector3(sizeChange, 0, sizeChange);
         ClearAtoms();
     }
 

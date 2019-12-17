@@ -2371,11 +2371,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7098830695514953373, guid: e1dbc0b162913f1439db1b0f8ed670bc,
+    - target: {fileID: 2239595070397229277, guid: e1dbc0b162913f1439db1b0f8ed670bc,
         type: 3}
-      propertyPath: m_Name
-      value: Player
+      propertyPath: speed
+      value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2239595070397229277, guid: e1dbc0b162913f1439db1b0f8ed670bc,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226045977528168971, guid: e1dbc0b162913f1439db1b0f8ed670bc,
+        type: 3}
+      propertyPath: evolutionManager
+      value: 
+      objectReference: {fileID: 2043770045}
     - target: {fileID: 7098830695514953346, guid: e1dbc0b162913f1439db1b0f8ed670bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2389,7 +2399,7 @@ PrefabInstance:
     - target: {fileID: 7098830695514953346, guid: e1dbc0b162913f1439db1b0f8ed670bc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.08
+      value: -13.18
       objectReference: {fileID: 0}
     - target: {fileID: 7098830695514953346, guid: e1dbc0b162913f1439db1b0f8ed670bc,
         type: 3}
@@ -2431,10 +2441,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4226045977528168971, guid: e1dbc0b162913f1439db1b0f8ed670bc,
+    - target: {fileID: 7098830695514953373, guid: e1dbc0b162913f1439db1b0f8ed670bc,
         type: 3}
-      propertyPath: evolutionManager
-      value: 
-      objectReference: {fileID: 2043770045}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1dbc0b162913f1439db1b0f8ed670bc, type: 3}
