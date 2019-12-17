@@ -45,16 +45,19 @@ public class Docker : MonoBehaviour
 
         float playerWidth = collider.bounds.size.x;
 
-        //Debug.Log("playerWidth: " + playerWidth);
+        //Sometimes the joints won't dock. This is preventing it.
+        float safetyMargin = 0.05f;
 
-        if (distance <= playerWidth + 0.05f && !dockable.IsDocked())
+        if (distance <= playerWidth + safetyMargin && !dockable.IsDocked())
         {
             dockable.SetDocked(true);
             FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();
 
-            DockedObject docked = new DockedObject();
-            docked.dockable = dockable;
-            docked.joint = fixedJoint;
+            DockedObject docked = new DockedObject
+            {
+                dockable = dockable,
+                joint = fixedJoint
+            };
 
             dockedObjects.Add(docked);
 
@@ -79,14 +82,15 @@ public class Docker : MonoBehaviour
         }
         else
         {
-            foreach (DockedObject docked in dockedObjects)
+            List<DockedObject> copy = new List<DockedObject>(dockedObjects);
+            foreach (DockedObject docked in copy)
             {
                 docked.joint.connectedBody = null;
                 Destroy(docked.joint);
                 docked.dockable.SetDocked(false);
             }
 
-            dockedObjects.Clear();
+            dockedObjects.RemoveAll(t => copy.Contains(t));
 
             evolutionManager.ClearAtoms();
         }

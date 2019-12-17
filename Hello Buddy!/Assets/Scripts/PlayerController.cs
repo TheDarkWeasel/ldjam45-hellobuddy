@@ -2,8 +2,8 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1;
-    public float rotationSpeed = 1;
+    public float speed = 0.75f;
+    public float rotationSpeed = 0.1f;
     private Rigidbody rb;
 
     void Start()

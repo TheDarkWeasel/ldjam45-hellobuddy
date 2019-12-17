@@ -55,7 +55,7 @@ public class Dockable : MonoBehaviour
 
     private void OnDocked()
     {
-        //Destory the mover script
+        //Destroy the mover script
         Destroy(gameObject.GetComponent<NonPlayableAtomMover>());
         //object will become a docker itself
         gameObject.AddComponent<Docker>().rb = gameObject.GetComponent<Rigidbody>();
