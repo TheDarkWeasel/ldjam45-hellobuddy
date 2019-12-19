@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class Dockable : MonoBehaviour
 {
-    public Rigidbody rb;
+    [SerializeField]
+    private Rigidbody rb;
 
-    public static List<Dockable> dockables = new List<Dockable>();
+    private static List<Dockable> dockables = new List<Dockable>();
 
     private Animator destroyAnimator;
 
     private bool isDocked = false;
     private bool isDestroyed = false;
+
+    public static List<Dockable> Dockables { get => dockables; set => dockables = value; }
+    public Rigidbody Rb { get => rb; set => rb = value; }
 
     void Start()
     {
@@ -58,7 +62,7 @@ public class Dockable : MonoBehaviour
         //Destroy the mover script
         Destroy(gameObject.GetComponent<NonPlayableAtomMover>());
         //object will become a docker itself
-        gameObject.AddComponent<Docker>().rb = gameObject.GetComponent<Rigidbody>();
+        gameObject.AddComponent<Docker>().RidgidBody = gameObject.GetComponent<Rigidbody>();
     }
 
     private void OnUndocked()

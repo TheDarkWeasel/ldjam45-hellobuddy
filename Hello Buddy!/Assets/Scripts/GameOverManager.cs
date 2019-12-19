@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
-    Animator anim;
+    private Animator anim;
 
-    bool hasGameEnded = false;
+    private bool hasGameEnded = false;
 
     void Start()
     {

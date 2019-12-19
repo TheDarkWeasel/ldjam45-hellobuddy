@@ -2,8 +2,10 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1f;
-    public float rotationSpeed = 1f;
+    [SerializeField]
+    private float speed = 1f;
+    [SerializeField]
+    private float rotationSpeed = 1f;
     private Rigidbody rb;
 
     void Start()

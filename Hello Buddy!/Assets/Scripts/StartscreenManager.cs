@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class StartscreenManager : MonoBehaviour
 {
-    public Canvas explanationCanvas;
-    public Canvas startscreenCanvas;
+    [SerializeField]
+    private Canvas explanationCanvas;
+    [SerializeField]
+    private Canvas startscreenCanvas;
 
     private bool inExplanation = false;
 

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Docker : MonoBehaviour
 {
-    public Rigidbody rb;
+    [SerializeField]
+    private Rigidbody rb;
     private EvolutionManager evolutionManager;
     private PlayerSounds playerSounds;
     private GameOverManager gameOverManager;
@@ -11,6 +12,8 @@ public class Docker : MonoBehaviour
     private List<DockedObject> dockedObjects = new List<DockedObject>();
 
     private bool isPlayer = false;
+
+    public Rigidbody RidgidBody { get => rb; set => rb = value; }
 
     void Start()
     {
@@ -26,7 +29,7 @@ public class Docker : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach (Dockable dockable in Dockable.dockables)
+        foreach (Dockable dockable in Dockable.Dockables)
         {
             if (!dockable.IsDestroyed())
                 TryDocking(dockable);
@@ -35,8 +38,8 @@ public class Docker : MonoBehaviour
 
     private void TryDocking(Dockable dockable)
     {
-        Rigidbody otherRigidbody = dockable.rb;
-        Vector3 direction = rb.position - otherRigidbody.position;
+        Rigidbody otherRigidbody = dockable.Rb;
+        Vector3 direction = RidgidBody.position - otherRigidbody.position;
         float distance = direction.magnitude;
 
         Collider playerCollider = gameObject.GetComponentInChildren<Collider>();

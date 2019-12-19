@@ -5,15 +5,23 @@ public class EvolutionManager : MonoBehaviour
 {
     private string HIGHSCOREKEY = "HIGHSCOREKEY";
 
-    public Text multiplierUIText;
-    public Text scoreUIText;
-    public Text atomsRemainingText;
-    public Text highscoreText;
-    public Text evolutionsDoneText;
+    [SerializeField]
+    private Text multiplierUIText;
+    [SerializeField]
+    private Text scoreUIText;
+    [SerializeField]
+    private Text atomsRemainingText;
+    [SerializeField]
+    private Text highscoreText;
+    [SerializeField]
+    private Text evolutionsDoneText;
 
-    public int scorePerAtom = 1;
-    public int scorePerEvolution = 100;
-    public int evolutionPossibleWithAtomCount = 5;
+    [SerializeField]
+    private int scorePerAtom = 1;
+    [SerializeField]
+    private int scorePerEvolution = 100;
+    [SerializeField]
+    private int evolutionPossibleWithAtomCount = 5;
 
     private int atomCounter = 0;
     private int score = 0;

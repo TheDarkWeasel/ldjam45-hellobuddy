@@ -2,7 +2,8 @@
 
 public class NonPlayableAtomMover : MonoBehaviour
 {
-    public float movementPerSecond = 3f;
+    [SerializeField]
+    private float movementPerSecond = 3f;
 
     void Update()
     {

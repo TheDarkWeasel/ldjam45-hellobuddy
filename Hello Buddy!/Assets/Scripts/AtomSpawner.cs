@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AtomSpawner : MonoBehaviour
 {
-    public float millisTillSpawn = 3000;
+    [SerializeField]
+    private float millisTillSpawn = 3000;
 
     private List<string> registeredAtomPrefabs = new List<string>();
     private float accumulatedDelta = 0;
