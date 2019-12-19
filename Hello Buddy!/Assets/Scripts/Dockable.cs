@@ -77,7 +77,8 @@ public class Dockable : MonoBehaviour
         destroyAnimator.SetTrigger("Destroy");
         //Destroy collider, so we don't lose when this object hits an enemy
         DestroyChildColliders();
-        Destroy(gameObject, 1);
+        const int secondsTillDestruction = 1;
+        Destroy(gameObject, secondsTillDestruction);
     }
 
     private void DestroyChildColliders()

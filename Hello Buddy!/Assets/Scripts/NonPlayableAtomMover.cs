@@ -5,6 +5,8 @@ public class NonPlayableAtomMover : MonoBehaviour
     [SerializeField]
     private float movementPerSecond = 3f;
 
+    private const float zBottomOfScreen = -19;
+
     void Update()
     {
         float deltaTime = Time.deltaTime;
@@ -13,7 +15,7 @@ public class NonPlayableAtomMover : MonoBehaviour
         gameObject.transform.Translate(movement);
 
         //Destroy unneeded object
-        if(gameObject.transform.position.z < -19)
+        if(gameObject.transform.position.z < zBottomOfScreen)
         {
             Destroy(gameObject);
         }

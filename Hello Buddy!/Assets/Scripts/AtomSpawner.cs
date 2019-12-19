@@ -7,13 +7,29 @@ public class AtomSpawner : MonoBehaviour
     [SerializeField]
     private float millisTillSpawn = 3000;
 
+    [SerializeField]
+    private GameObject leftWall;
+    [SerializeField]
+    private GameObject rightWall;
+
     private List<string> registeredAtomPrefabs = new List<string>();
     private float accumulatedDelta = 0;
+
+    private const float zTopOfPlayfield = 17.63f;
+    //margin so atoms are not spawned in the wall
+    private const float horizontalSafetyMargin = 1.5f;
+    private float xLeftOfPlayfield = -10.4f;
+    private float xRightOfPlayfield = 10.3f;
 
     void Start()
     {
         registeredAtomPrefabs.Add("Prefabs/EnemyAtom");
         registeredAtomPrefabs.Add("Prefabs/FriendlyAtom");
+
+        Collider leftCollider = leftWall.GetComponent<Collider>();
+        Collider rightCollider = rightWall.GetComponent<Collider>();
+        xLeftOfPlayfield = leftWall.transform.position.x + leftCollider.bounds.extents.x + horizontalSafetyMargin;
+        xRightOfPlayfield = rightWall.transform.position.x - rightCollider.bounds.extents.x - horizontalSafetyMargin;
     }
 
     void Update()
@@ -27,7 +43,7 @@ public class AtomSpawner : MonoBehaviour
             string atomPrefabPath = registeredAtomPrefabs[Random.Range(0, registeredAtomPrefabs.Count)];
             GameObject instantiatedObject = Instantiate(Resources.Load<GameObject>(atomPrefabPath));
 
-            Vector3 spawn = new Vector3(Random.Range(-10.4f, 10.3f), 0, 17.63f);
+            Vector3 spawn = new Vector3(Random.Range(xLeftOfPlayfield, xRightOfPlayfield), 0, zTopOfPlayfield);
             instantiatedObject.transform.position = spawn;
 
             //Downward movement

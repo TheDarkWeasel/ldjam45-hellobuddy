@@ -2414,6 +2414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   millisTillSpawn: 1000
+  leftWall: {fileID: 611262435}
+  rightWall: {fileID: 383254876}
 --- !u!1001 &79775640787541105
 PrefabInstance:
   m_ObjectHideFlags: 0

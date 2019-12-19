@@ -54,7 +54,7 @@ public class Docker : MonoBehaviour
         float otherRadius = otherCollider.bounds.size.x / 2;
 
         //Sometimes the joints won't dock. This is preventing it.
-        float safetyMargin = 0.05f;
+        const float safetyMargin = 0.05f;
 
         if (distance <= playerRadius + otherRadius + safetyMargin && !dockable.IsDocked())
         {
