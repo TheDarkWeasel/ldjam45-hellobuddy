@@ -5,7 +5,7 @@ public class EvolutionManager : MonoBehaviour
 {
     private string HIGHSCOREKEY = "HIGHSCOREKEY";
 
-    public Text atomsUIText;
+    public Text multiplierUIText;
     public Text scoreUIText;
     public Text atomsRemainingText;
     public Text highscoreText;
@@ -86,7 +86,7 @@ public class EvolutionManager : MonoBehaviour
 
     private void UpdateAtomsAndScore()
     {
-        atomsUIText.text = "" + atomCounter;
+        multiplierUIText.text = "x" + Mathf.Max(1, atomCounter - evolutionPossibleWithAtomCount + 1);
         scoreUIText.text = "" + score;
         evolutionsDoneText.text = "" + evolutionsDone;
         int atomsRemainingForEvo = evolutionPossibleWithAtomCount - atomCounter;

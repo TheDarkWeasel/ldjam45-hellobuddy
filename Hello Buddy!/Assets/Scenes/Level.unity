@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 378082125}
   - component: {fileID: 378082124}
   m_Layer: 5
-  m_Name: AtomsDescription
+  m_Name: MultiplierDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,8 +723,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 315.1, y: 162.2}
-  m_SizeDelta: {x: 87, y: 49.199997}
+  m_AnchoredPosition: {x: 315.1, y: -88.7}
+  m_SizeDelta: {x: 131.4, y: 73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378082124
 MonoBehaviour:
@@ -749,7 +749,7 @@ MonoBehaviour:
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -757,7 +757,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Atoms
+  m_Text: Evolution Multiplier
 --- !u!222 &378082125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1167,7 +1167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -82.399994, y: 25.3}
+  m_AnchoredPosition: {x: -82.399994, y: 159.5}
   m_SizeDelta: {x: 170.20001, y: 49.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768537409
@@ -2099,7 +2099,7 @@ GameObject:
   - component: {fileID: 1672970197}
   - component: {fileID: 1672970196}
   m_Layer: 5
-  m_Name: AtomsValue
+  m_Name: MultiplierValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2121,7 +2121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 315.5, y: 126.7}
+  m_AnchoredPosition: {x: 315.5, y: -161.5}
   m_SizeDelta: {x: 145.2, y: 49.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1672970196
@@ -2155,7 +2155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: x1
 --- !u!222 &1672970197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cc97e4effdb26488ff7b91d780b327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atomsUIText: {fileID: 1672970196}
+  multiplierUIText: {fileID: 1672970196}
   scoreUIText: {fileID: 74089994}
   atomsRemainingText: {fileID: 2092303470}
   highscoreText: {fileID: 939221876}
@@ -2327,7 +2327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 316.1, y: -74}
+  m_AnchoredPosition: {x: 316.1, y: 62.6}
   m_SizeDelta: {x: 200, y: 49.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092303470
