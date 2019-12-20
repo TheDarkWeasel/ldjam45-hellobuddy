@@ -45,9 +45,6 @@ public class AtomSpawner : MonoBehaviour
 
             Vector3 spawn = new Vector3(Random.Range(xLeftOfPlayfield, xRightOfPlayfield), 0, zTopOfPlayfield);
             instantiatedObject.transform.position = spawn;
-
-            //Downward movement
-            instantiatedObject.AddComponent<NonPlayableAtomMover>();
         }
     }
 }

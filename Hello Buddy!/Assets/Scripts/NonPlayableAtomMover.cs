@@ -15,9 +15,18 @@ public class NonPlayableAtomMover : MonoBehaviour
         gameObject.transform.Translate(movement);
 
         //Destroy unneeded object
-        if(gameObject.transform.position.z < zBottomOfScreen)
+        if (gameObject.activeSelf == true && gameObject.transform.position.z < zBottomOfScreen)
         {
-            Destroy(gameObject);
+            if (gameObject.GetComponentInChildren<EnemyController>() == null)
+            {
+                //it's a friendly atom
+                AtomPool.GetInstance().DestroyFriendlyAtom(gameObject, 0);
+            }
+            else
+            {
+                //it's an enemy
+                AtomPool.GetInstance().DestroyEnemyAtom(gameObject, 0);
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ public class GameOverManager : MonoBehaviour
     {
         if (hasGameEnded && Input.GetKeyUp(KeyCode.R))
         {
+            AtomPool.ResetAtomPool();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

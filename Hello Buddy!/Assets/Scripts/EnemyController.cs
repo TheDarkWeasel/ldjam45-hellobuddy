@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     private Docker[] dockers;
     private Animator destroyAnimator;
 
-    bool isDestroyed = false;
+    private bool isDestroyed = false;
 
     void Start()
     {
@@ -20,6 +18,7 @@ public class EnemyController : MonoBehaviour
         if (isDestroyed)
             return;
 
+        //If the atom we collided with is friendly, we do our stuff
         if (collision.gameObject.GetComponentInChildren<EnemyController>() == null)
         {
             isDestroyed = true;
@@ -28,21 +27,16 @@ public class EnemyController : MonoBehaviour
                 docker.OnHitEnemy();
             }
 
-            destroyAnimator.ResetTrigger("Destroy");
+            destroyAnimator.ResetTrigger("Reset");
             destroyAnimator.SetTrigger("Destroy");
-            //Destroy collider, so we don't lose when this object hits an enemy
-            DestroyChildColliders();
             AtomPool.GetInstance().DestroyEnemyAtom(transform.parent.gameObject, 1);
         }
     }
 
-    private void DestroyChildColliders()
+    public void resetDestroy()
     {
-        Destroy(gameObject.GetComponent<Collider>());
-        Collider[] childColliders = gameObject.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in childColliders)
-        {
-            collider.enabled = false;
-        }
+        destroyAnimator.ResetTrigger("Destroy");
+        destroyAnimator.SetTrigger("Reset");
+        isDestroyed = false;
     }
 }
