@@ -78,7 +78,7 @@ public class Dockable : MonoBehaviour
         //Destroy collider, so we don't lose when this object hits an enemy
         DestroyChildColliders();
         const int secondsTillDestruction = 1;
-        Destroy(gameObject, secondsTillDestruction);
+        AtomPool.GetInstance().DestroyFriendlyAtom(gameObject, secondsTillDestruction);
     }
 
     private void DestroyChildColliders()
@@ -86,7 +86,7 @@ public class Dockable : MonoBehaviour
         Collider[] childColliders = gameObject.GetComponentsInChildren<Collider>();
         foreach (Collider collider in childColliders)
         {
-            Destroy(collider);
+            collider.enabled = false;
         }
     }
 }

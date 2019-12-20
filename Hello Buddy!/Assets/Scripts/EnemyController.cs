@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
             destroyAnimator.SetTrigger("Destroy");
             //Destroy collider, so we don't lose when this object hits an enemy
             DestroyChildColliders();
-            Destroy(transform.parent.gameObject, 1);
+            AtomPool.GetInstance().DestroyEnemyAtom(transform.parent.gameObject, 1);
         }
     }
 
@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         Collider[] childColliders = gameObject.GetComponentsInChildren<Collider>();
         foreach (Collider collider in childColliders)
         {
-            Destroy(collider);
+            collider.enabled = false;
         }
     }
 }

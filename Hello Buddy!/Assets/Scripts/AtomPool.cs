@@ -28,14 +28,14 @@ public class AtomPool
         return CreateAtom("Prefabs/EnemyAtom");
     }
 
-    public void DestroyFriendlyAtom(GameObject friendlyAtom)
+    public void DestroyFriendlyAtom(GameObject friendlyAtom, int secondsTillDestruction)
     {
-
+        Object.Destroy(friendlyAtom, secondsTillDestruction);
     }
 
-    public void DestroyEnemyAtom(GameObject enemyAtom)
+    public void DestroyEnemyAtom(GameObject enemyAtom, int secondsTillDestruction)
     {
-
+        Object.Destroy(enemyAtom, secondsTillDestruction);
     }
 
     private GameObject CreateAtom(string atomPrefabPath)

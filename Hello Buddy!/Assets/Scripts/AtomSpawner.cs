@@ -12,7 +12,7 @@ public class AtomSpawner : MonoBehaviour
     [SerializeField]
     private GameObject rightWall;
 
-    private List<AtomCreateCommand> registeredAtomPrefabs = new List<AtomCreateCommand>();
+    private List<AtomCreateCommand> registeredAtomCreateCommands = new List<AtomCreateCommand>();
     private float accumulatedDelta = 0;
 
     private const float zTopOfPlayfield = 17.63f;
@@ -23,8 +23,8 @@ public class AtomSpawner : MonoBehaviour
 
     void Start()
     {
-        registeredAtomPrefabs.Add(new EnemyAtomCreateCommand(AtomPool.GetInstance()));
-        registeredAtomPrefabs.Add(new FriendlyAtomCreateCommand(AtomPool.GetInstance()));
+        registeredAtomCreateCommands.Add(new EnemyAtomCreateCommand(AtomPool.GetInstance()));
+        registeredAtomCreateCommands.Add(new FriendlyAtomCreateCommand(AtomPool.GetInstance()));
 
         Collider leftCollider = leftWall.GetComponent<Collider>();
         Collider rightCollider = rightWall.GetComponent<Collider>();
@@ -40,7 +40,7 @@ public class AtomSpawner : MonoBehaviour
         if (accumulatedDelta > millisTillSpawn)
         {
             accumulatedDelta = 0;
-            AtomCreateCommand atomCreateCommand = registeredAtomPrefabs[Random.Range(0, registeredAtomPrefabs.Count)];
+            AtomCreateCommand atomCreateCommand = registeredAtomCreateCommands[Random.Range(0, registeredAtomCreateCommands.Count)];
             GameObject instantiatedObject = atomCreateCommand.Create();
 
             Vector3 spawn = new Vector3(Random.Range(xLeftOfPlayfield, xRightOfPlayfield), 0, zTopOfPlayfield);
