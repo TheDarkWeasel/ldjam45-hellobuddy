@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 5504012164002644248}
   - component: {fileID: 6641334026421544782}
   - component: {fileID: 425070651735269106}
+  - component: {fileID: 1586571212801703399}
   m_Layer: 0
   m_Name: FriendlyAtom
   m_TagString: Untagged
@@ -415,7 +416,7 @@ Animator:
   m_GameObject: {fileID: 48968317768110148}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cdaa03f6ff695a5448fe99822b3c5502, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6001b23ce80d0e64aa850d5e5a3cb6e8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -424,3 +425,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1586571212801703399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48968317768110148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0ef2dbe157a2a4489c8d0bb3fabb41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5504012164002644248}

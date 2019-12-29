@@ -29,11 +29,12 @@ public class EnemyController : MonoBehaviour
 
             destroyAnimator.ResetTrigger("Reset");
             destroyAnimator.SetTrigger("Destroy");
-            AtomPool.GetInstance().DestroyEnemyAtom(transform.parent.gameObject, 1);
+            const int secondsTillDestruction = 1;
+            AtomPool.GetInstance().DestroyEnemyAtom(transform.parent.gameObject, secondsTillDestruction);
         }
     }
 
-    public void resetDestroy()
+    public void ResetDestroy()
     {
         destroyAnimator.ResetTrigger("Destroy");
         destroyAnimator.SetTrigger("Reset");

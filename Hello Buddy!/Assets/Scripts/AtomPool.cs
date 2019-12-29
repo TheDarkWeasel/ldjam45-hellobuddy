@@ -25,7 +25,40 @@ public class AtomPool
 
     private AtomPool()
     {
+        friendlyAtomPool = new ObjectPool<GameObject>(() => InternalCreateFriendlyAtom(), (i) => InternalActivateFriendlyAtom(i), (i) => InternalDeactivateFriendlyAtom(i));
         enemyAtomPool = new ObjectPool<GameObject>(() => InternalCreateEnemyAtom(), (i) => InternalActivateEnemyAtom(i), (i) => InternalDeactivateEnemyAtom(i));
+    }
+
+    private GameObject InternalCreateFriendlyAtom()
+    {
+        GameObject atom = CreateAtom("Prefabs/FriendlyAtom");
+        //Downward movement
+        atom.AddComponent<NonPlayableAtomMover>();
+        //Script for becoming a docker later
+        atom.GetComponent<Docker>().Active = false;
+        return atom;
+    }
+
+    private void InternalActivateFriendlyAtom(GameObject friendlyAtom)
+    {
+        friendlyAtom.transform.position = new Vector3(0, 0, 0);
+        friendlyAtom.transform.rotation = new Quaternion(0, 0, 0, 0);
+        friendlyAtom.transform.localScale = new Vector3(1, 1, 1);
+
+        friendlyAtom.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        friendlyAtom.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+        SetChildCollidersEnabled(friendlyAtom, true);
+        friendlyAtom.GetComponent<NonPlayableAtomMover>().Active = true;
+        friendlyAtom.GetComponent<Docker>().Active = false;
+        friendlyAtom.SetActive(true);
+    }
+
+    private void InternalDeactivateFriendlyAtom(GameObject friendlyAtom)
+    {
+        //enable collision scripts
+        friendlyAtom.GetComponentInChildren<Dockable>().ResetDestroy();
+        friendlyAtom.SetActive(false);
     }
 
     private GameObject InternalCreateEnemyAtom()
@@ -47,16 +80,13 @@ public class AtomPool
     private void InternalDeactivateEnemyAtom(GameObject enemyAtom)
     {
         //enable collision scripts for next use
-        enemyAtom.GetComponentInChildren<EnemyController>().resetDestroy();
+        enemyAtom.GetComponentInChildren<EnemyController>().ResetDestroy();
         enemyAtom.SetActive(false);
     }
 
     public GameObject CreateFriendlyAtom()
     {
-        GameObject atom = CreateAtom("Prefabs/FriendlyAtom");
-        //Downward movement
-        atom.AddComponent<NonPlayableAtomMover>();
-        return atom;
+        return friendlyAtomPool.GetObject();
     }
 
     public GameObject CreateEnemyAtom()
@@ -66,14 +96,16 @@ public class AtomPool
 
     public void DestroyFriendlyAtom(GameObject friendlyAtom, int secondsTillDestruction)
     {
-        Object.Destroy(friendlyAtom, secondsTillDestruction);
+        //Destroy collider, so we don't lose when this object hits an enemy
+        SetChildCollidersEnabled(friendlyAtom, false);
+        friendlyAtom.GetComponentInChildren<Docker>().StartCoroutine(ReturnToPoolAfterXSeconds(secondsTillDestruction, friendlyAtom, friendlyAtomPool));
     }
 
     public void DestroyEnemyAtom(GameObject enemyAtom, int secondsTillDestruction)
     {
         //Destroy collider, so we don't lose when this object hits an enemy
         SetChildCollidersEnabled(enemyAtom, false);
-        enemyAtom.GetComponentInChildren<EnemyController>().StartCoroutine(ReturnToPoolAfterXSeconds(secondsTillDestruction, enemyAtom));
+        enemyAtom.GetComponentInChildren<EnemyController>().StartCoroutine(ReturnToPoolAfterXSeconds(secondsTillDestruction, enemyAtom, enemyAtomPool));
     }
 
     private GameObject CreateAtom(string atomPrefabPath)
@@ -82,10 +114,10 @@ public class AtomPool
         return instantiatedObject;
     }
 
-    private IEnumerator ReturnToPoolAfterXSeconds(float time, GameObject gameObject)
+    private IEnumerator ReturnToPoolAfterXSeconds(float time, GameObject gameObject, ObjectPool<GameObject> pool)
     {
         yield return new WaitForSeconds(time);
-        enemyAtomPool.PutObject(gameObject);
+        pool.PutObject(gameObject);
     }
 
     private void SetChildCollidersEnabled(GameObject gameObject, bool enable)

@@ -14,7 +14,7 @@ public class Dockable : MonoBehaviour
     private bool isDestroyed = false;
 
     public static List<Dockable> Dockables { get => dockables; set => dockables = value; }
-    public Rigidbody Rb { get => rb; set => rb = value; }
+    public Rigidbody RidgidBody { get => rb; set => rb = value; }
 
     void Start()
     {
@@ -59,10 +59,10 @@ public class Dockable : MonoBehaviour
 
     private void OnDocked()
     {
-        //Destroy the mover script
-        Destroy(gameObject.GetComponent<NonPlayableAtomMover>());
+        //Deactivate the mover script
+        gameObject.GetComponent<NonPlayableAtomMover>().Active = false;
         //object will become a docker itself
-        gameObject.AddComponent<Docker>().RidgidBody = gameObject.GetComponent<Rigidbody>();
+        gameObject.GetComponent<Docker>().Active = true;
     }
 
     private void OnUndocked()
@@ -73,20 +73,16 @@ public class Dockable : MonoBehaviour
         {
             gameObject.GetComponent<Docker>().OnHitEnemy();
         }
-        destroyAnimator.ResetTrigger("Destroy");
+        destroyAnimator.ResetTrigger("Reset");
         destroyAnimator.SetTrigger("Destroy");
-        //Destroy collider, so we don't lose when this object hits an enemy
-        DestroyChildColliders();
         const int secondsTillDestruction = 1;
         AtomPool.GetInstance().DestroyFriendlyAtom(gameObject, secondsTillDestruction);
     }
 
-    private void DestroyChildColliders()
+    public void ResetDestroy()
     {
-        Collider[] childColliders = gameObject.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in childColliders)
-        {
-            collider.enabled = false;
-        }
+        destroyAnimator.ResetTrigger("Destroy");
+        destroyAnimator.SetTrigger("Reset");
+        isDestroyed = false;
     }
 }

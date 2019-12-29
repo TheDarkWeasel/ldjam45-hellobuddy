@@ -13,7 +13,10 @@ public class Docker : MonoBehaviour
 
     private bool isPlayer = false;
 
+    private bool active = true;
+
     public Rigidbody RidgidBody { get => rb; set => rb = value; }
+    public bool Active { get => active; set => active = value; }
 
     void Start()
     {
@@ -29,17 +32,20 @@ public class Docker : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach (Dockable dockable in Dockable.Dockables)
+        if (active)
         {
-            if (!dockable.IsDestroyed())
-                TryDocking(dockable);
+            foreach (Dockable dockable in Dockable.Dockables)
+            {
+                if (!dockable.IsDestroyed())
+                    TryDocking(dockable);
+            }
         }
     }
 
     private void TryDocking(Dockable dockable)
     {
-        Rigidbody otherRigidbody = dockable.Rb;
-        Vector3 direction = RidgidBody.position - otherRigidbody.position;
+        Rigidbody otherRigidbody = dockable.RidgidBody;
+        Vector3 direction = rb.position - otherRigidbody.position;
         float distance = direction.magnitude;
 
         Collider playerCollider = gameObject.GetComponentInChildren<Collider>();
@@ -78,31 +84,34 @@ public class Docker : MonoBehaviour
 
     public void OnHitEnemy()
     {
-        if (isPlayer)
+        if (active)
         {
-            playerSounds.OnHit();
-        }
-
-        if (isPlayer && dockedObjects.Count == 0)
-        {
-            Destroy(gameObject);
-            gameOverManager.OnGameOver();
-        }
-        else
-        {
-            List<DockedObject> copy = new List<DockedObject>(dockedObjects);
-            foreach (DockedObject docked in copy)
+            if (isPlayer)
             {
-                docked.joint.connectedBody = null;
-                Destroy(docked.joint);
-                docked.dockable.SetDocked(false);
+                playerSounds.OnHit();
             }
 
-            dockedObjects.RemoveAll(t => copy.Contains(t));
+            if (isPlayer && dockedObjects.Count == 0)
+            {
+                Destroy(gameObject);
+                gameOverManager.OnGameOver();
+            }
+            else
+            {
+                List<DockedObject> copy = new List<DockedObject>(dockedObjects);
+                foreach (DockedObject docked in copy)
+                {
+                    docked.joint.connectedBody = null;
+                    Destroy(docked.joint);
+                    docked.dockable.SetDocked(false);
+                }
 
-            evolutionManager.ClearAtoms();
+                dockedObjects.RemoveAll(t => copy.Contains(t));
+
+                evolutionManager.ClearAtoms();
+            }
+
+            Debug.Log("Hit enemy");
         }
-
-        Debug.Log("Hit enemy");
     }
 }
