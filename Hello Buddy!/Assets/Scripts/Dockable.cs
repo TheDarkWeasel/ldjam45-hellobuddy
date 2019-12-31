@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Dockable : MonoBehaviour
@@ -44,7 +45,10 @@ public class Dockable : MonoBehaviour
     public void SetDocked(bool docked)
     {
         if (isDestroyed)
+        {
+            Debug.Log("Already destroyed, should be set to: " + docked);
             return;
+        }
 
         isDocked = docked;
         if (!docked)
@@ -72,6 +76,7 @@ public class Dockable : MonoBehaviour
         if (gameObject.GetComponent<Docker>() != null)
         {
             gameObject.GetComponent<Docker>().OnHitEnemy();
+            gameObject.GetComponent<Docker>().Active = false;
         }
         destroyAnimator.ResetTrigger("Reset");
         destroyAnimator.SetTrigger("Destroy");

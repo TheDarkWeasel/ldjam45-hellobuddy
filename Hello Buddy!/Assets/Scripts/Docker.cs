@@ -9,6 +9,8 @@ public class Docker : MonoBehaviour
     private PlayerSounds playerSounds;
     private GameOverManager gameOverManager;
 
+    private readonly object syncLock = new object();
+
     private List<DockedObject> dockedObjects = new List<DockedObject>();
 
     private bool isPlayer = false;
@@ -64,21 +66,27 @@ public class Docker : MonoBehaviour
 
         if (distance <= playerRadius + otherRadius + safetyMargin && !dockable.IsDocked())
         {
-            dockable.SetDocked(true);
-            FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();
-
-            DockedObject docked = new DockedObject
+            lock (syncLock)
             {
-                dockable = dockable,
-                joint = fixedJoint
-            };
+                if (active && !dockable.IsDestroyed())
+                {
+                    dockable.SetDocked(true);
+                    FixedJoint fixedJoint = gameObject.AddComponent<FixedJoint>();
 
-            dockedObjects.Add(docked);
+                    DockedObject docked = new DockedObject
+                    {
+                        dockable = dockable,
+                        joint = fixedJoint
+                    };
 
-            fixedJoint.connectedBody = otherRigidbody;
-            evolutionManager.OnAddedAtom();
+                    dockedObjects.Add(docked);
 
-            playerSounds.OnDock();
+                    fixedJoint.connectedBody = otherRigidbody;
+                    evolutionManager.OnAddedAtom();
+
+                    playerSounds.OnDock();
+                }
+            }
         }
     }
 
@@ -98,17 +106,20 @@ public class Docker : MonoBehaviour
             }
             else
             {
-                List<DockedObject> copy = new List<DockedObject>(dockedObjects);
-                foreach (DockedObject docked in copy)
+                lock (syncLock)
                 {
-                    docked.joint.connectedBody = null;
-                    Destroy(docked.joint);
-                    docked.dockable.SetDocked(false);
+                    List<DockedObject> copy = new List<DockedObject>(dockedObjects);
+                    foreach (DockedObject docked in copy)
+                    {
+                        docked.joint.connectedBody = null;
+                        Destroy(docked.joint);
+                        docked.dockable.SetDocked(false);
+                    }
+
+                    dockedObjects.RemoveAll(t => copy.Contains(t));
+
+                    evolutionManager.ClearAtoms();
                 }
-
-                dockedObjects.RemoveAll(t => copy.Contains(t));
-
-                evolutionManager.ClearAtoms();
             }
 
             Debug.Log("Hit enemy");
