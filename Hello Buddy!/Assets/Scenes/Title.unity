@@ -696,11 +696,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7098830695514953373, guid: e1dbc0b162913f1439db1b0f8ed670bc,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 7098830695514953346, guid: e1dbc0b162913f1439db1b0f8ed670bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -771,7 +766,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7098830695514953373, guid: e1dbc0b162913f1439db1b0f8ed670bc,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4226045977528168971, guid: e1dbc0b162913f1439db1b0f8ed670bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1dbc0b162913f1439db1b0f8ed670bc, type: 3}
 --- !u!1 &645084298
 GameObject:
@@ -1555,7 +1556,9 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1967919020879460196, guid: a6f3e1e955c19144ea2fe2b4747034eb, type: 3}
+    - {fileID: 1586571212801703399, guid: a6f3e1e955c19144ea2fe2b4747034eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a6f3e1e955c19144ea2fe2b4747034eb, type: 3}
 --- !u!1 &1658039577
 GameObject:
@@ -1956,11 +1959,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7203141761707935834, guid: e9d5bb6a7d3649d4ba6d187d4d969679,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyAtom
-      objectReference: {fileID: 0}
     - target: {fileID: 7203141761707935828, guid: e9d5bb6a7d3649d4ba6d187d4d969679,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2030,6 +2028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203141761707935834, guid: e9d5bb6a7d3649d4ba6d187d4d969679,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyAtom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9d5bb6a7d3649d4ba6d187d4d969679, type: 3}
